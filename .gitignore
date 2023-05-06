@@ -1,6 +1,5 @@
 ./jobster/.idea
 ./jobster/.DS_Store
-./jobster/.env
 ./jobster/.netlify
 ./jobster/.redwood
 ./jobster/dev.db*
