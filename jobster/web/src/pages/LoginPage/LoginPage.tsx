@@ -16,13 +16,25 @@ import { toast, Toaster } from '@redwoodjs/web/toast'
 import { useAuth } from 'src/auth'
 
 const LoginPage = () => {
-  const { isAuthenticated, logIn } = useAuth()
+  const { isAuthenticated, currentUser, logIn } = useAuth()
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate(routes.home())
+      switch (currentUser.role) {
+        case 'ADMIN':
+          navigate(routes.home())
+          break
+        case 'APPLICANT':
+          navigate(routes.applicantDashboard())
+          break
+        case 'RECRUITER':
+          navigate(routes.home())
+          break
+        default:
+          navigate(routes.home())
+      }
     }
-  }, [isAuthenticated])
+  }, [isAuthenticated, currentUser])
 
   const emailRef = useRef<HTMLInputElement>(null)
   useEffect(() => {
