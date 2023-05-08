@@ -9,17 +9,26 @@
 
 import { Router, Route, Set } from '@redwoodjs/router'
 
+import { useAuth } from './auth'
 import JobsterLayout from './layouts/JobsterLayout/JobsterLayout'
 
 const Routes = () => {
   return (
-    <Router>
+    <Router useAuth={useAuth}>
       <Set wrap={JobsterLayout}>
         <Route path="/" page={HomePage} name="home" />
         <Route path="/about" page={AboutPage} name="about" />
         <Route path="/hire" page={HirePage} name="hire" />
         <Route path="/work" page={WorkPage} name="work" />
+        <Route path="/login" page={LoginPage} name="login" />
+        <Route path="/signup" page={SignupPage} name="signup" />
+        <Route path="/forgot-password" page={ForgotPasswordPage} name="forgotPassword" />
+        <Route path="/reset-password" page={ResetPasswordPage} name="resetPassword" />
       </Set>
+      <Set wrap={JobsterLayout} private unauthenticated="login">
+        <Route path="/applicant-dashboard" page={ApplicantDashboardPage} name="applicantDashboard" />
+      </Set>
+
       <Route notfound page={NotFoundPage} />
     </Router>
   )
