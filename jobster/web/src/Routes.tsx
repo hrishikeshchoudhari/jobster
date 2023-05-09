@@ -15,6 +15,7 @@ import JobsterLayout from './layouts/JobsterLayout/JobsterLayout'
 const Routes = () => {
   return (
     <Router useAuth={useAuth}>
+      <Route path="/cv-builder" page={CvBuilderPage} name="cvBuilder" />
       <Set wrap={JobsterLayout}>
         <Route path="/" page={HomePage} name="home" />
         <Route path="/about" page={AboutPage} name="about" />
@@ -27,6 +28,7 @@ const Routes = () => {
       </Set>
       <Set wrap={JobsterLayout} private unauthenticated="login">
         <Route path="/applicant-dashboard" page={ApplicantDashboardPage} name="applicantDashboard" />
+        <Route path="/applicant-dashboard/cv-builder" page={CvBuilderPage} name="cvBuilder" />
       </Set>
 
       <Route notfound page={NotFoundPage} />

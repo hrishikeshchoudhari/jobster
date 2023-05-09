@@ -27,9 +27,10 @@ model User {
 }
 
 model Applicant {
-  id     String @id @default(cuid())
-  userId String @unique
+  id     String   @id @default(cuid())
+  userId String   @unique
   User   User[]
+  Resume Resume[]
 }
 
 model Recruiter {
@@ -48,4 +49,57 @@ enum UserRole {
   ADMIN
   APPLICANT
   RECRUITER
+}
+
+model Resume {
+  id          String       @id @default(cuid())
+  applicant   Applicant    @relation(fields: [applicantId], references: [id])
+  applicantId String
+  educations  Education[]
+  employments Employment[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+}
+
+model Education {
+  id            String   @id @default(cuid())
+  resumeId      String
+  resume        Resume   @relation(fields: [resumeId], references: [id])
+  instituteName String
+  startYear     Int
+  endYear       Int
+  topic         String
+  level         Level
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Employment {
+  id           String   @id @default(cuid())
+  resumeId     String
+  resume       Resume   @relation(fields: [resumeId], references: [id])
+  employerName String
+  startDate    DateTime
+  endDate      DateTime
+  role         String
+  description  String
+  skills       Skill[]
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Skill {
+  id           String     @id @default(cuid())
+  employmentId String
+  employment   Employment @relation(fields: [employmentId], references: [id])
+  name         String
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+}
+
+enum Level {
+  SCHOOL
+  BACHELORS
+  MASTERS
+  PHD
 }

@@ -23,7 +23,7 @@ const ApplicantDashboardPage = () => {
               employers.
             </p>
             <Link
-              to={routes.home()}
+              to={routes.cvBuilder()}
               className="inline-block rounded bg-indigo-600 px-6 py-2 font-semibold text-white"
             >
               Start Building Your CV
