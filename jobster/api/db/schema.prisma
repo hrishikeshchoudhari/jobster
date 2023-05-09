@@ -21,28 +21,28 @@ model User {
   applicantId         String?
   recruiterId         String?
   adminId             String?
-  Applicant           Applicant? @relation(fields: [applicantId], references: [id])
-  Recruiter           Recruiter? @relation(fields: [recruiterId], references: [id])
-  Admin               Admin?     @relation(fields: [adminId], references: [id])
+  Applicant           Applicant?
+  Recruiter           Recruiter?
+  Admin               Admin?
 }
 
 model Applicant {
   id     String   @id @default(cuid())
   userId String   @unique
-  User   User[]
+  User   User     @relation(fields: [userId], references: [id])
   Resume Resume[]
 }
 
 model Recruiter {
   id     String @id @default(cuid())
   userId String @unique
-  User   User[]
+  User   User   @relation(fields: [userId], references: [id])
 }
 
 model Admin {
   id     String @id @default(cuid())
   userId String @unique
-  User   User[]
+  User   User   @relation(fields: [userId], references: [id])
 }
 
 enum UserRole {
