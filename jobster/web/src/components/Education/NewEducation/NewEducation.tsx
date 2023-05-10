@@ -20,7 +20,7 @@ const NewEducation = () => {
     {
       onCompleted: () => {
         toast.success('Education created')
-        navigate(routes.educations())
+        // navigate(routes.educations())
       },
       onError: (error) => {
         toast.error(error.message)

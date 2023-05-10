@@ -22,6 +22,7 @@ export const schema = gql`
   type Query {
     educations: [Education!]! @requireAuth
     education(id: String!): Education @requireAuth
+    educationsByResumeId(resumeId: String!): [Education!]! @requireAuth
   }
 
   input CreateEducationInput {

@@ -41,9 +41,9 @@ const CvBuilderPage = () => {
       </button>
       <ResumeCell id={currentUser.Applicant.Resume.id} />
       <NewEducation />
-      <EducationsCell />
-      <NewEmployment />
-      <EmploymentsCell />
+      <EducationsCell resumeId={currentUser.Applicant.Resume.id} />
+      {/* <NewEmployment /> */}
+      {/* <EmploymentsCell /> */}
     </div>
   )
 }
