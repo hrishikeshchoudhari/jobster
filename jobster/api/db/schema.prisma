@@ -27,10 +27,10 @@ model User {
 }
 
 model Applicant {
-  id     String   @id @default(cuid())
-  userId String   @unique
-  User   User     @relation(fields: [userId], references: [id])
-  Resume Resume[]
+  id     String  @id @default(cuid())
+  userId String  @unique
+  User   User    @relation(fields: [userId], references: [id])
+  Resume Resume?
 }
 
 model Recruiter {
@@ -54,7 +54,7 @@ enum UserRole {
 model Resume {
   id          String       @id @default(cuid())
   applicant   Applicant    @relation(fields: [applicantId], references: [id])
-  applicantId String
+  applicantId String       @unique
   educations  Education[]
   employments Employment[]
   createdAt   DateTime     @default(now())

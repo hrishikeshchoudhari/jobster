@@ -53,7 +53,7 @@ export const Success = ({ education }: CellSuccessProps<EditEducationById>) => {
     {
       onCompleted: () => {
         toast.success('Education updated')
-        navigate(routes.educations())
+        // navigate(routes.educations())
       },
       onError: (error) => {
         toast.error(error.message)

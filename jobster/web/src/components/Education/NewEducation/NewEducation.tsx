@@ -1,10 +1,10 @@
+import type { CreateEducationInput } from 'types/graphql'
+
 import { navigate, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import EducationForm from 'src/components/Education/EducationForm'
-
-import type { CreateEducationInput } from 'types/graphql'
 
 const CREATE_EDUCATION_MUTATION = gql`
   mutation CreateEducationMutation($input: CreateEducationInput!) {

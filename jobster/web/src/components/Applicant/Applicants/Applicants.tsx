@@ -1,14 +1,14 @@
+import type {
+  DeleteApplicantMutationVariables,
+  FindApplicants,
+} from 'types/graphql'
+
 import { Link, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import { QUERY } from 'src/components/Applicant/ApplicantsCell'
 import { truncate } from 'src/lib/formatters'
-
-import type {
-  DeleteApplicantMutationVariables,
-  FindApplicants,
-} from 'types/graphql'
 
 const DELETE_APPLICANT_MUTATION = gql`
   mutation DeleteApplicantMutation($id: String!) {
