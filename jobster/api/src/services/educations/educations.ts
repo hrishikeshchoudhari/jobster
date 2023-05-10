@@ -47,3 +47,9 @@ export const Education: EducationRelationResolvers = {
     return db.education.findUnique({ where: { id: root?.id } }).resume()
   },
 }
+
+export const educationsByResumeId = ({ resumeId }) => {
+  return db.education.findMany({
+    where: { resumeId },
+  })
+}
