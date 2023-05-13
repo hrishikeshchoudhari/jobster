@@ -50,3 +50,9 @@ export const Employment: EmploymentRelationResolvers = {
     return db.employment.findUnique({ where: { id: root?.id } }).skills()
   },
 }
+
+export const employmentsByResumeId = ({ resumeId }) => {
+  return db.employment.findMany({
+    where: { resumeId },
+  })
+}

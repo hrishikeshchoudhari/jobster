@@ -66,7 +66,6 @@ const Routes = () => {
         <Route path="/users/{id}" page={UserUserPage} name="user" />
         <Route path="/users" page={UserUsersPage} name="users" />
       </Set>
-
       <Set wrap={JobsterLayout}>
         <Route path="/" page={HomePage} name="home" />
         <Route path="/about" page={AboutPage} name="about" />
@@ -81,7 +80,6 @@ const Routes = () => {
         <Route path="/applicant-dashboard" page={ApplicantDashboardPage} name="applicantDashboard" />
         <Route path="/applicant-dashboard/cv-builder" page={CvBuilderPage} name="cvBuilder" />
       </Set>
-
       <Route notfound page={NotFoundPage} />
     </Router>
   )

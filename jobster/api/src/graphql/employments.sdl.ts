@@ -16,6 +16,7 @@ export const schema = gql`
   type Query {
     employments: [Employment!]! @requireAuth
     employment(id: String!): Employment @requireAuth
+    employmentsByResumeId(resumeId: String!): [Employment!]! @requireAuth
   }
 
   input CreateEmploymentInput {

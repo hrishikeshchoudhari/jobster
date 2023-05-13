@@ -1,10 +1,13 @@
 import { Link, routes } from '@redwoodjs/router'
 
+import { useAuth } from '../../auth'
+
 type InternalLayoutProps = {
   children?: React.ReactNode
 }
 
 const InternalLayout = ({ children }: InternalLayoutProps) => {
+  const { isAuthenticated, currentUser, logOut } = useAuth()
   return (
     <>
       <header className="bg-primary">
@@ -25,20 +28,13 @@ const InternalLayout = ({ children }: InternalLayoutProps) => {
                     </Link>
                   </li>
                   <li>
-                    <Link
+                    <button
                       className="text-white"
-                      to={routes.applicantDashboard()}
-                    >
-                      Profile
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      className="text-white"
-                      to={routes.applicantDashboard()}
+                      type="button"
+                      onClick={logOut}
                     >
                       Logout
-                    </Link>
+                    </button>
                   </li>
                 </ul>
               </nav>
