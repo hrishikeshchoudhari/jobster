@@ -11,6 +11,7 @@ import {
   TextField,
   DatetimeLocalField,
   Submit,
+  SelectField,
 } from '@redwoodjs/forms'
 import type { RWGqlError } from '@redwoodjs/forms'
 
@@ -30,45 +31,44 @@ interface EmploymentFormProps {
 }
 
 const EmploymentForm = (props: EmploymentFormProps) => {
-  const [skillNames, setSkillNames] = useState(
-    props.employment?.skills?.map((skill) => skill.name) || ['']
-  )
+  // const [skillNames, setSkillNames] = useState(
+  //   props.employment?.skills?.map((skill) => skill.name) || ['']
+  // )
 
-  const addSkillField = () => {
-    setSkillNames([...skillNames, ''])
-  }
+  // const onSubmit = async (data: FormEmployment) => {
+  //   const skillFields = Object.entries(data).filter(([key, value]) =>
+  //     key.startsWith('skill')
+  //   )
+  //   const skills = skillFields.map(([key, value]) => ({ name: value }))
+  //   const otherData = Object.fromEntries(
+  //     Object.entries(data).filter(([key, value]) => !key.startsWith('skill'))
+  //   )
+  //   // first, update the employment without the skills
+  //   const savedEmployment = await props.onSave(otherData, props?.employment?.id)
 
-  const removeSkillField = (index) => {
-    const newSkillNames = [...skillNames]
-    newSkillNames.splice(index, 1)
-    setSkillNames(newSkillNames)
-  }
-
-  const handleSkillChange = (index, event) => {
-    const newSkillNames = [...skillNames]
-    newSkillNames[index] = event.target.value
-    setSkillNames(newSkillNames)
-  }
-
-  const onSubmit = async (data: FormEmployment) => {
-    const skillFields = Object.entries(data).filter(([key, value]) =>
-      key.startsWith('skill')
-    )
-    const skills = skillFields.map(([key, value]) => ({ name: value }))
-    const otherData = Object.fromEntries(
-      Object.entries(data).filter(([key, value]) => !key.startsWith('skill'))
-    )
-    // first, update the employment without the skills
-    const savedEmployment = await props.onSave(otherData, props?.employment?.id)
-
-    for (const skill of skills) {
-      await createSkill({ employmentId: savedEmployment.id, name: skill })
-    }
-  }
-
-  // const onSubmit = (data: FormEmployment) => {
-  //   props.onSave(data, props?.employment?.id)
+  //   for (const skill of skills) {
+  //     await createSkill({ employmentId: savedEmployment.id, name: skill })
+  //   }
   // }
+
+  const SKILLS = [
+    'JavaScript',
+    'Python',
+    'Ruby',
+    'Java',
+    'C++',
+    'C#',
+    'Go',
+    'Rust',
+    'TypeScript',
+    'Swift',
+  ]
+
+  const onSubmit = (data: FormEmployment) => {
+    console.log('onSubmit data: ', data)
+    props.onSave(data, props?.employment?.id)
+    // window.location.reload()
+  }
 
   return (
     <div className="rw-form-wrapper">
@@ -186,32 +186,30 @@ const EmploymentForm = (props: EmploymentFormProps) => {
           validation={{ required: true }}
         />
 
-        {skillNames.map((skillName, index) => (
-          <div key={index}>
-            <Label
-              name={`skill${index}`}
-              className="rw-label"
-              errorClassName="rw-label rw-label-error"
-            >
-              Skill {index + 1}
-            </Label>
-            <TextField
-              name={`skill${index}`}
-              value={skillName}
-              onChange={(event) => handleSkillChange(index, event)}
-              className="rw-input"
-              errorClassName="rw-input rw-input-error"
-            />
-            <button type="button" onClick={() => removeSkillField(index)}>
-              Remove
-            </button>
-          </div>
-        ))}
-        <button type="button" onClick={addSkillField}>
-          Add Skill
-        </button>
+        <Label
+          name="skills"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Skills
+        </Label>
 
-        <FieldError name="description" className="rw-field-error" />
+        <SelectField
+          name="skills"
+          multiple
+          className="rw-input"
+          defaultValue={props.employment?.skills}
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        >
+          {SKILLS.map((skill) => (
+            <option key={skill} value={skill}>
+              {skill}
+            </option>
+          ))}
+        </SelectField>
+
+        <FieldError name="skills" className="rw-field-error" />
 
         <div className="rw-button-group">
           <Submit disabled={props.loading} className="rw-button rw-button-blue">

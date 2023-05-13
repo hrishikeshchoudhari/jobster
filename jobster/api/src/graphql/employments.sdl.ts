@@ -8,7 +8,7 @@ export const schema = gql`
     endDate: DateTime!
     role: String!
     description: String!
-    skills: [Skill]!
+    skills: [String!]!
     createdAt: DateTime!
     updatedAt: DateTime!
   }
@@ -26,6 +26,7 @@ export const schema = gql`
     endDate: DateTime!
     role: String!
     description: String!
+    skills: [String!]!
   }
 
   input UpdateEmploymentInput {
@@ -35,6 +36,7 @@ export const schema = gql`
     endDate: DateTime
     role: String
     description: String
+    skills: [String!]
   }
 
   type Mutation {
