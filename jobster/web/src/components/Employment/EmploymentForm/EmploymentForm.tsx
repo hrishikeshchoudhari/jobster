@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import type { EditEmploymentById, UpdateEmploymentInput } from 'types/graphql'
+// import type { CreateSkillInput } from 'types/graphql'
 
 import {
   Form,
@@ -60,7 +61,6 @@ const EmploymentForm = (props: EmploymentFormProps) => {
     // first, update the employment without the skills
     const savedEmployment = await props.onSave(otherData, props?.employment?.id)
 
-    // then, create the skills separately
     for (const skill of skills) {
       await createSkill({ employmentId: savedEmployment.id, name: skill })
     }
