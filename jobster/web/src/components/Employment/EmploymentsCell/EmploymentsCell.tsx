@@ -39,6 +39,7 @@ export const QUERY = gql`
       endDate
       role
       description
+      skills
       createdAt
       updatedAt
     }

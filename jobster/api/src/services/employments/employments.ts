@@ -46,9 +46,9 @@ export const Employment: EmploymentRelationResolvers = {
   resume: (_obj, { root }) => {
     return db.employment.findUnique({ where: { id: root?.id } }).resume()
   },
-  skills: (_obj, { root }) => {
-    return db.employment.findUnique({ where: { id: root?.id } }).skills()
-  },
+  // skills: (_obj, { root }) => {
+  //   return db.employment.findUnique({ where: { id: root?.id } }).skills()
+  // },
 }
 
 export const employmentsByResumeId = ({ resumeId }) => {
