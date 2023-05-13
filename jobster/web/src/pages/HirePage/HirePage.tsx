@@ -55,10 +55,22 @@ const HirePage = () => {
             Sign up for a recruiter account and start posting jobs and reviewing
             applicants today.
           </p>
-          <button className="mt-8 rounded-md bg-blue-600 px-6 py-3 text-white">
-            Sign Up Now
+          <button className="mt-4 rounded bg-blue-600 px-4 py-2 text-white">
+            <Link className="text-white" to={routes.signup()}>
+              Create an Account
+            </Link>
+          </button>
+          <br />
+          <br />
+          <p>OR</p>
+          <button className="mt-4 rounded bg-blue-600 px-4 py-2 text-white">
+            <Link className="text-white" to={routes.login()}>
+              Login to Apply
+            </Link>
           </button>
         </div>
+        <br />
+        <br />
       </div>
     </>
   )

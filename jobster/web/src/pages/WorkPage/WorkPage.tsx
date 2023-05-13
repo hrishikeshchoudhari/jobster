@@ -23,39 +23,39 @@ const WorkPage = () => {
           {/* Add multiple job sections, replacing the content as necessary */}
           <div className="rounded-xl bg-white p-6 shadow-md">
             <div className="text-center">
-              <h3 className="text-2xl font-bold">Job Title 1</h3>
-              <p className="mt-2 text-gray-500">Company 1</p>
-              <p className="text-gray-500">Location 1</p>
-              <button className="mt-4 rounded bg-blue-600 px-4 py-2 text-white">
-                <Link className="text-white" to={routes.login()}>
-                  Login Now
-                </Link>
-              </button>
+              <h3 className="text-2xl font-bold">Java Architect</h3>
+              <p className="mt-2 text-gray-500">Oracle</p>
+              <p className="text-gray-500">NYC, USA</p>
             </div>
           </div>
           <div className="rounded-xl bg-white p-6 shadow-md">
             <div className="text-center">
-              <h3 className="text-2xl font-bold">Job Title 2</h3>
-              <p className="mt-2 text-gray-500">Company 2</p>
-              <p className="text-gray-500">Location 2</p>
-              <button className="mt-4 rounded bg-blue-600 px-4 py-2 text-white">
-                <Link className="text-white" to={routes.login()}>
-                  Login Now
-                </Link>
-              </button>
+              <h3 className="text-2xl font-bold">Web3 Developer</h3>
+              <p className="mt-2 text-gray-500">Neon.tech</p>
+              <p className="text-gray-500">London</p>
             </div>
           </div>
           <div className="rounded-xl bg-white p-6 shadow-md">
             <div className="text-center">
-              <h3 className="text-2xl font-bold">Job Title 3</h3>
-              <p className="mt-2 text-gray-500">Company 3</p>
-              <p className="text-gray-500">Location 3</p>
-              <button className="mt-4 rounded bg-blue-600 px-4 py-2 text-white">
-                <Link className="text-white" to={routes.login()}>
-                  Login Now
-                </Link>
-              </button>
+              <h3 className="text-2xl font-bold">UX Designer</h3>
+              <p className="mt-2 text-gray-500">Spotify</p>
+              <p className="text-gray-500">Stockholm</p>
             </div>
+          </div>
+        </div>
+        <br />
+        <br />
+        <div className="rounded-xl bg-white p-6 shadow-md">
+          <div className="text-center">
+            <h3 className="text-2xl font-bold">Thousands More</h3>
+            <p className="mt-2 text-gray-500">
+              Get Your Next Role from Jobster
+            </p>
+            <button className="mt-4 rounded bg-blue-600 px-4 py-2 text-white">
+              <Link className="text-white" to={routes.login()}>
+                Login to Apply
+              </Link>
+            </button>
           </div>
         </div>
         <br />
