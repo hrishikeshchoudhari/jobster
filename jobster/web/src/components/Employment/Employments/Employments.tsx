@@ -1,14 +1,14 @@
+import type {
+  DeleteEmploymentMutationVariables,
+  FindEmployments,
+} from 'types/graphql'
+
 import { Link, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import { QUERY } from 'src/components/Employment/EmploymentsCell'
 import { timeTag, truncate } from 'src/lib/formatters'
-
-import type {
-  DeleteEmploymentMutationVariables,
-  FindEmployments,
-} from 'types/graphql'
 
 const DELETE_EMPLOYMENT_MUTATION = gql`
   mutation DeleteEmploymentMutation($id: String!) {
@@ -51,6 +51,7 @@ const EmploymentsList = ({ employments }: FindEmployments) => {
             <th>End date</th>
             <th>Role</th>
             <th>Description</th>
+            <th>Skills</th>
             <th>Created at</th>
             <th>Updated at</th>
             <th>&nbsp;</th>
@@ -66,6 +67,7 @@ const EmploymentsList = ({ employments }: FindEmployments) => {
               <td>{timeTag(employment.endDate)}</td>
               <td>{truncate(employment.role)}</td>
               <td>{truncate(employment.description)}</td>
+              <td>{truncate(employment.skills)}</td>
               <td>{timeTag(employment.createdAt)}</td>
               <td>{timeTag(employment.updatedAt)}</td>
               <td>
