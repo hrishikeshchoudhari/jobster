@@ -27,7 +27,9 @@ const WorkPage = () => {
               <p className="mt-2 text-gray-500">Company 1</p>
               <p className="text-gray-500">Location 1</p>
               <button className="mt-4 rounded bg-blue-600 px-4 py-2 text-white">
-                Apply Now
+                <Link className="text-white" to={routes.login()}>
+                  Login Now
+                </Link>
               </button>
             </div>
           </div>
@@ -37,7 +39,9 @@ const WorkPage = () => {
               <p className="mt-2 text-gray-500">Company 2</p>
               <p className="text-gray-500">Location 2</p>
               <button className="mt-4 rounded bg-blue-600 px-4 py-2 text-white">
-                Apply Now
+                <Link className="text-white" to={routes.login()}>
+                  Login Now
+                </Link>
               </button>
             </div>
           </div>
@@ -47,9 +51,27 @@ const WorkPage = () => {
               <p className="mt-2 text-gray-500">Company 3</p>
               <p className="text-gray-500">Location 3</p>
               <button className="mt-4 rounded bg-blue-600 px-4 py-2 text-white">
-                Apply Now
+                <Link className="text-white" to={routes.login()}>
+                  Login Now
+                </Link>
               </button>
             </div>
+          </div>
+        </div>
+        <br />
+        <br />
+        <div className="rounded-xl bg-white p-6 shadow-md">
+          <div className="text-center">
+            <h3 className="text-2xl font-bold">Get Started Building a CV</h3>
+            <p className="mt-2 text-gray-500">Build your resume with us</p>
+            <p className="text-gray-500">
+              Include detailed education & employment history
+            </p>
+            <button className="mt-4 rounded bg-blue-600 px-4 py-2 text-white">
+              <Link className="text-white" to={routes.signup()}>
+                Create an Account
+              </Link>
+            </button>
           </div>
         </div>
       </div>

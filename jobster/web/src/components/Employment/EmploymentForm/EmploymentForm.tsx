@@ -1,3 +1,7 @@
+import { useState } from 'react'
+
+import type { EditEmploymentById, UpdateEmploymentInput } from 'types/graphql'
+
 import {
   Form,
   FormError,
@@ -7,8 +11,6 @@ import {
   DatetimeLocalField,
   Submit,
 } from '@redwoodjs/forms'
-
-import type { EditEmploymentById, UpdateEmploymentInput } from 'types/graphql'
 import type { RWGqlError } from '@redwoodjs/forms'
 
 const formatDatetime = (value) => {
@@ -27,9 +29,46 @@ interface EmploymentFormProps {
 }
 
 const EmploymentForm = (props: EmploymentFormProps) => {
-  const onSubmit = (data: FormEmployment) => {
-    props.onSave(data, props?.employment?.id)
+  const [skillNames, setSkillNames] = useState(
+    props.employment?.skills?.map((skill) => skill.name) || ['']
+  )
+
+  const addSkillField = () => {
+    setSkillNames([...skillNames, ''])
   }
+
+  const removeSkillField = (index) => {
+    const newSkillNames = [...skillNames]
+    newSkillNames.splice(index, 1)
+    setSkillNames(newSkillNames)
+  }
+
+  const handleSkillChange = (index, event) => {
+    const newSkillNames = [...skillNames]
+    newSkillNames[index] = event.target.value
+    setSkillNames(newSkillNames)
+  }
+
+  const onSubmit = async (data: FormEmployment) => {
+    const skillFields = Object.entries(data).filter(([key, value]) =>
+      key.startsWith('skill')
+    )
+    const skills = skillFields.map(([key, value]) => ({ name: value }))
+    const otherData = Object.fromEntries(
+      Object.entries(data).filter(([key, value]) => !key.startsWith('skill'))
+    )
+    // first, update the employment without the skills
+    const savedEmployment = await props.onSave(otherData, props?.employment?.id)
+
+    // then, create the skills separately
+    for (const skill of skills) {
+      await createSkill({ employmentId: savedEmployment.id, name: skill })
+    }
+  }
+
+  // const onSubmit = (data: FormEmployment) => {
+  //   props.onSave(data, props?.employment?.id)
+  // }
 
   return (
     <div className="rw-form-wrapper">
@@ -146,6 +185,31 @@ const EmploymentForm = (props: EmploymentFormProps) => {
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}
         />
+
+        {skillNames.map((skillName, index) => (
+          <div key={index}>
+            <Label
+              name={`skill${index}`}
+              className="rw-label"
+              errorClassName="rw-label rw-label-error"
+            >
+              Skill {index + 1}
+            </Label>
+            <TextField
+              name={`skill${index}`}
+              value={skillName}
+              onChange={(event) => handleSkillChange(index, event)}
+              className="rw-input"
+              errorClassName="rw-input rw-input-error"
+            />
+            <button type="button" onClick={() => removeSkillField(index)}>
+              Remove
+            </button>
+          </div>
+        ))}
+        <button type="button" onClick={addSkillField}>
+          Add Skill
+        </button>
 
         <FieldError name="description" className="rw-field-error" />
 

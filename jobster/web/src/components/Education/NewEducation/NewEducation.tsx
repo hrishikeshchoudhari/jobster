@@ -13,14 +13,17 @@ const CREATE_EDUCATION_MUTATION = gql`
     }
   }
 `
+type NewEducationProps = {
+  onCompleted: () => void
+}
 
-const NewEducation = () => {
+const NewEducation = ({ onCompleted }: NewEducationProps) => {
   const [createEducation, { loading, error }] = useMutation(
     CREATE_EDUCATION_MUTATION,
     {
       onCompleted: () => {
-        toast.success('Education created')
-        // navigate(routes.educations())
+        onCompleted()
+        navigate(routes.cvBuilder())
       },
       onError: (error) => {
         toast.error(error.message)

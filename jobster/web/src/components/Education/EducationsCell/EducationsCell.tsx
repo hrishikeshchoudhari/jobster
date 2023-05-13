@@ -50,10 +50,10 @@ export const Loading = () => <div>Loading...</div>
 export const Empty = () => {
   return (
     <div className="rw-text-center">
-      {'No educations yet. '}
-      <Link to={routes.newEducation()} className="rw-link">
+      {'No education history entered yet. '}
+      {/* <Link to={routes.newEducation()} className="rw-link">
         {'Create one?'}
-      </Link>
+      </Link> */}
     </div>
   )
 }

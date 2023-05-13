@@ -55,7 +55,7 @@ export const Success = ({
     {
       onCompleted: () => {
         toast.success('Employment updated')
-        navigate(routes.employments())
+        navigate(routes.cvBuilder())
       },
       onError: (error) => {
         toast.error(error.message)

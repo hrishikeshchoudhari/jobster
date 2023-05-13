@@ -1,4 +1,6 @@
-import cuid from 'cuid'
+import React, { useState } from 'react'
+
+// import cuid from 'cuid'
 
 import {
   Form,
@@ -15,7 +17,7 @@ import { useAuth } from 'src/auth'
 import ApplicantCell from 'src/components/Applicant/ApplicantCell'
 import EducationsCell from 'src/components/Education/EducationsCell'
 import NewEducation from 'src/components/Education/NewEducation/NewEducation'
-import EmploymentsCell from 'src/components/Employment/EmploymentCell'
+import EmploymentsCell from 'src/components/Employment/EmploymentsCell'
 import NewEmployment from 'src/components/Employment/NewEmployment/NewEmployment'
 import { useCreateResume } from 'src/components/Resume/NewResume/NewResume'
 import ResumeCell from 'src/components/Resume/ResumeCell'
@@ -30,20 +32,46 @@ const CvBuilderPage = () => {
 
   const handleClick = () => {
     createResume({ applicantId: currentUser.Applicant.id })
-    // navigate(routes.cvBuilder())
+    window.location.reload()
   }
+
+  const [refetchSignalEdu, setRefetchSignalEdu] = useState(0)
+  const [refetchSignalEmp, setRefetchSignalEmp] = useState(0)
 
   return (
     <div>
       <ApplicantCell id={currentUser.Applicant.id} />
-      <button className="rw-button rw-button-green" onClick={handleClick}>
-        Initiate Resume
-      </button>
-      <ResumeCell id={currentUser.Applicant.Resume.id} />
-      <NewEducation />
-      <EducationsCell resumeId={currentUser.Applicant.Resume.id} />
-      {/* <NewEmployment /> */}
-      {/* <EmploymentsCell /> */}
+
+      {currentUser.Applicant.Resume ? (
+        <>
+          {currentUser.Applicant.Resume.id ? (
+            <ResumeCell id={currentUser.Applicant.Resume.id} />
+          ) : null}
+
+          <NewEducation
+            onCompleted={() => setRefetchSignalEdu(refetchSignalEdu + 1)}
+          />
+
+          {currentUser.Applicant.Resume.id ? (
+            <EducationsCell
+              key={refetchSignalEdu}
+              resumeId={currentUser.Applicant.Resume.id}
+            />
+          ) : null}
+
+          <NewEmployment
+            onCompleted={() => setRefetchSignalEmp(refetchSignalEmp + 1)}
+          />
+
+          {currentUser.Applicant.Resume.id ? (
+            <EmploymentsCell resumeId={currentUser.Applicant.Resume.id} />
+          ) : null}
+        </>
+      ) : (
+        <button className="rw-button rw-button-green" onClick={handleClick}>
+          Initiate Resume
+        </button>
+      )}
     </div>
   )
 }

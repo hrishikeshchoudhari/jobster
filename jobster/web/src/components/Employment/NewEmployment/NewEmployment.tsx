@@ -1,10 +1,10 @@
+import type { CreateEmploymentInput } from 'types/graphql'
+
 import { navigate, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import EmploymentForm from 'src/components/Employment/EmploymentForm'
-
-import type { CreateEmploymentInput } from 'types/graphql'
 
 const CREATE_EMPLOYMENT_MUTATION = gql`
   mutation CreateEmploymentMutation($input: CreateEmploymentInput!) {
@@ -14,13 +14,17 @@ const CREATE_EMPLOYMENT_MUTATION = gql`
   }
 `
 
-const NewEmployment = () => {
+type NewEmploymentProps = {
+  onCompleted: () => void
+}
+
+const NewEmployment = ({ onCompleted }: NewEmploymentProps) => {
   const [createEmployment, { loading, error }] = useMutation(
     CREATE_EMPLOYMENT_MUTATION,
     {
       onCompleted: () => {
-        toast.success('Employment created')
-        navigate(routes.employments())
+        onCompleted()
+        navigate(routes.cvBuilder())
       },
       onError: (error) => {
         toast.error(error.message)
