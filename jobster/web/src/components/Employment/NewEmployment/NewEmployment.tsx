@@ -16,9 +16,10 @@ const CREATE_EMPLOYMENT_MUTATION = gql`
 
 type NewEmploymentProps = {
   onCompleted: () => void
+  resumeId: string
 }
 
-const NewEmployment = ({ onCompleted }: NewEmploymentProps) => {
+const NewEmployment = ({ onCompleted, resumeId }: NewEmploymentProps) => {
   const [createEmployment, { loading, error }] = useMutation(
     CREATE_EMPLOYMENT_MUTATION,
     {
@@ -33,7 +34,7 @@ const NewEmployment = ({ onCompleted }: NewEmploymentProps) => {
   )
 
   const onSave = (input: CreateEmploymentInput) => {
-    createEmployment({ variables: { input } })
+    createEmployment({ variables: { input: { ...input, resumeId } } })
   }
 
   return (
@@ -42,7 +43,12 @@ const NewEmployment = ({ onCompleted }: NewEmploymentProps) => {
         <h2 className="rw-heading rw-heading-secondary">New Employment</h2>
       </header>
       <div className="rw-segment-main">
-        <EmploymentForm onSave={onSave} loading={loading} error={error} />
+        <EmploymentForm
+          onSave={onSave}
+          loading={loading}
+          error={error}
+          resumeId={resumeId}
+        />
       </div>
     </div>
   )

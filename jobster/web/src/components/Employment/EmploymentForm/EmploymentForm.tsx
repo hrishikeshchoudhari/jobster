@@ -28,6 +28,7 @@ interface EmploymentFormProps {
   onSave: (data: UpdateEmploymentInput, id?: FormEmployment['id']) => void
   error: RWGqlError
   loading: boolean
+  resumeId: string
 }
 
 const EmploymentForm = (props: EmploymentFormProps) => {
@@ -82,18 +83,20 @@ const EmploymentForm = (props: EmploymentFormProps) => {
 
         <Label
           name="resumeId"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
+          className="rw-label text-gray-200"
+          errorClassName="rw-label rw-label-error "
         >
-          Resume id
+          Resume ID
         </Label>
 
         <TextField
           name="resumeId"
           defaultValue={props.employment?.resumeId}
+          value={props.resumeId}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}
+          hidden
         />
 
         <FieldError name="resumeId" className="rw-field-error" />

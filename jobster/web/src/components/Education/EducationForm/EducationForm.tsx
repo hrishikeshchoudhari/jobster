@@ -1,3 +1,5 @@
+import type { EditEducationById, UpdateEducationInput } from 'types/graphql'
+
 import {
   Form,
   FormError,
@@ -8,8 +10,6 @@ import {
   RadioField,
   Submit,
 } from '@redwoodjs/forms'
-
-import type { EditEducationById, UpdateEducationInput } from 'types/graphql'
 import type { RWGqlError } from '@redwoodjs/forms'
 
 type FormEducation = NonNullable<EditEducationById['education']>
@@ -19,6 +19,7 @@ interface EducationFormProps {
   onSave: (data: UpdateEducationInput, id?: FormEducation['id']) => void
   error: RWGqlError
   loading: boolean
+  resumeId: string
 }
 
 const EducationForm = (props: EducationFormProps) => {
@@ -38,18 +39,20 @@ const EducationForm = (props: EducationFormProps) => {
 
         <Label
           name="resumeId"
-          className="rw-label"
+          className="rw-label text-gray-200"
           errorClassName="rw-label rw-label-error"
         >
-          Resume id
+          Resume ID
         </Label>
 
         <TextField
           name="resumeId"
           defaultValue={props.education?.resumeId}
+          value={props.resumeId}
           className="rw-input"
           errorClassName="rw-input rw-input-error"
           validation={{ required: true }}
+          hidden
         />
 
         <FieldError name="resumeId" className="rw-field-error" />
