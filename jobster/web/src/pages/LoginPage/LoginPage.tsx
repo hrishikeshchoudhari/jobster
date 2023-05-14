@@ -28,7 +28,7 @@ const LoginPage = () => {
           navigate(routes.applicantDashboard())
           break
         case 'RECRUITER':
-          navigate(routes.home())
+          navigate(routes.recruiterDashboard())
           break
         default:
           navigate(routes.home())

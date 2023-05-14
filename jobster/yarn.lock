@@ -11228,6 +11228,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"datatables.net-dt@npm:^1.13.4":
+  version: 1.13.4
+  resolution: "datatables.net-dt@npm:1.13.4"
+  dependencies:
+    datatables.net: ">=1.12.1"
+    jquery: ">=1.7"
+  checksum: 360e8a2eaa0c8713f48ff992284b918399de64ca8b207fc8a26dfcae2cc1cda5be36a1558031187ea7d9b173414926edb6e034897bd7eda5df32e936f3123090
+  languageName: node
+  linkType: hard
+
+"datatables.net@npm:>=1.12.1":
+  version: 1.13.4
+  resolution: "datatables.net@npm:1.13.4"
+  dependencies:
+    jquery: ">=1.7"
+  checksum: 53b53a5bd6c0c1c10e47f01dae5b8835be59fbaf3468b4236cbb8cd3d87b2053efa0fbd5976921de88186187ce95a3a82f8998bf202792007a88dff7e34ff1fe
+  languageName: node
+  linkType: hard
+
 "date-fns@npm:^2.29.3":
   version: 2.30.0
   resolution: "date-fns@npm:2.30.0"
@@ -16483,6 +16502,13 @@ __metadata:
   version: 4.14.4
   resolution: "jose@npm:4.14.4"
   checksum: cb13d70f2336c0a45210f8e4e71ed8d4d82a884ad66776308f5ab9a90e2087419782e0b288d2a9070657620637f0d2dbcac6f3164ed9ba8903c0096e282cec3c
+  languageName: node
+  linkType: hard
+
+"jquery@npm:>=1.7":
+  version: 3.7.0
+  resolution: "jquery@npm:3.7.0"
+  checksum: 2eea1d9ce48fabd0d8736b8bed2e2087c33f038a077ea9f8dcbad55b07c3a1abc226898f498fc992b7fb02c1296cbe79d6283902a9d2027ed41efab04d86da6f
   languageName: node
   linkType: hard
 
@@ -24606,6 +24632,7 @@ __metadata:
     "@redwoodjs/router": 5.0.6
     "@redwoodjs/web": 5.0.6
     autoprefixer: ^10.4.14
+    datatables.net-dt: ^1.13.4
     humanize-string: 2.1.0
     postcss: ^8.4.23
     postcss-loader: ^7.3.0

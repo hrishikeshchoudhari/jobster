@@ -14,11 +14,11 @@ import ScaffoldLayout from 'src/layouts/ScaffoldLayout'
 import { useAuth } from './auth'
 import InternalLayout from './layouts/InternalLayout/InternalLayout'
 import JobsterLayout from './layouts/JobsterLayout/JobsterLayout'
+import RecruiterLayout from './layouts/RecruiterLayout/RecruiterLayout'
 
 const Routes = () => {
   return (
     <Router useAuth={useAuth}>
-      <Route path="/recruiter-dashboard" page={RecruiterDashboardPage} name="recruiterDashboard" />
       <Set wrap={ScaffoldLayout} title="Skills" titleTo="skills" buttonLabel="New Skill" buttonTo="newSkill">
         <Route path="/skills/new" page={SkillNewSkillPage} name="newSkill" />
         <Route path="/skills/{id}/edit" page={SkillEditSkillPage} name="editSkill" />
@@ -80,6 +80,10 @@ const Routes = () => {
       <Set wrap={InternalLayout} private unauthenticated="login">
         <Route path="/applicant-dashboard" page={ApplicantDashboardPage} name="applicantDashboard" />
         <Route path="/applicant-dashboard/cv-builder" page={CvBuilderPage} name="cvBuilder" />
+      </Set>
+      <Set wrap={RecruiterLayout} private unauthenticated="login">
+        <Route path="/all-candidates" page={AllCandidatesPage} name="allCandidates" />
+        <Route path="/recruiter-dashboard" page={RecruiterDashboardPage} name="recruiterDashboard" />
       </Set>
       <Route notfound page={NotFoundPage} />
     </Router>
