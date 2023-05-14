@@ -40,8 +40,6 @@ const CvBuilderPage = () => {
 
   return (
     <div>
-      <ApplicantCell id={currentUser.Applicant.id} />
-
       {currentUser.Applicant.Resume ? (
         <>
           {currentUser.Applicant.Resume.id ? (
@@ -49,6 +47,7 @@ const CvBuilderPage = () => {
           ) : null}
 
           <NewEducation
+            resumeId={currentUser.Applicant.Resume.id}
             onCompleted={() => setRefetchSignalEdu(refetchSignalEdu + 1)}
           />
 
@@ -60,6 +59,7 @@ const CvBuilderPage = () => {
           ) : null}
 
           <NewEmployment
+            resumeId={currentUser.Applicant.Resume.id}
             onCompleted={() => setRefetchSignalEmp(refetchSignalEmp + 1)}
           />
 

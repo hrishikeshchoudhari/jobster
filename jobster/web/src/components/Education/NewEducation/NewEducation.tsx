@@ -15,9 +15,10 @@ const CREATE_EDUCATION_MUTATION = gql`
 `
 type NewEducationProps = {
   onCompleted: () => void
+  resumeId: string
 }
 
-const NewEducation = ({ onCompleted }: NewEducationProps) => {
+const NewEducation = ({ onCompleted, resumeId }: NewEducationProps) => {
   const [createEducation, { loading, error }] = useMutation(
     CREATE_EDUCATION_MUTATION,
     {
@@ -32,7 +33,7 @@ const NewEducation = ({ onCompleted }: NewEducationProps) => {
   )
 
   const onSave = (input: CreateEducationInput) => {
-    createEducation({ variables: { input } })
+    createEducation({ variables: { input: { ...input, resumeId } } })
   }
 
   return (
@@ -41,7 +42,12 @@ const NewEducation = ({ onCompleted }: NewEducationProps) => {
         <h2 className="rw-heading rw-heading-secondary">New Education</h2>
       </header>
       <div className="rw-segment-main">
-        <EducationForm onSave={onSave} loading={loading} error={error} />
+        <EducationForm
+          onSave={onSave}
+          loading={loading}
+          error={error}
+          resumeId={resumeId}
+        />
       </div>
     </div>
   )
