@@ -18,6 +18,7 @@ import JobsterLayout from './layouts/JobsterLayout/JobsterLayout'
 const Routes = () => {
   return (
     <Router useAuth={useAuth}>
+      <Route path="/recruiter-dashboard" page={RecruiterDashboardPage} name="recruiterDashboard" />
       <Set wrap={ScaffoldLayout} title="Skills" titleTo="skills" buttonLabel="New Skill" buttonTo="newSkill">
         <Route path="/skills/new" page={SkillNewSkillPage} name="newSkill" />
         <Route path="/skills/{id}/edit" page={SkillEditSkillPage} name="editSkill" />
