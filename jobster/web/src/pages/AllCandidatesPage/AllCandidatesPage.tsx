@@ -1,3 +1,5 @@
+import { useState } from 'react'
+
 import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 import { useQuery } from '@redwoodjs/web'
@@ -37,11 +39,10 @@ const GET_APPLICANTS_WITH_DETAIL = gql`
 `
 
 const AllCandidatesPage = () => {
-  const { currentUser } = useAuth()
-  console.log(currentUser)
   const { data, loading, error } = useQuery(GET_APPLICANTS_WITH_DETAIL)
 
   console.log(data)
+  const [filter, setFilter] = useState('')
 
   if (loading) {
     return <div>Loading...</div>
@@ -51,9 +52,24 @@ const AllCandidatesPage = () => {
     return <div>Error: {error.message}</div>
   }
 
+  const filteredApplicants = data.getApplicantsWithDetail.filter((user) =>
+    filter
+      ? user.Applicant.Resume.employments.some((employment) =>
+          employment.skills.includes(filter)
+        )
+      : true
+  )
+
   return (
     <div className="space-y-8">
-      {data.getApplicantsWithDetail.map((user) => (
+      <input
+        type="text"
+        value={filter}
+        onChange={(e) => setFilter(e.target.value)}
+        className="mb-4 rounded border border-gray-300 p-2"
+        placeholder="Filter by skill"
+      />
+      {filteredApplicants.map((user) => (
         <div key={user.id}>
           <h2 className="mb-4 text-2xl font-bold">{user.email}</h2>
 
