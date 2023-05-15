@@ -90,8 +90,6 @@ model Employment {
 
 model Skill {
   id        String   @id @default(cuid())
-  // employmentId String
-  // employment   Employment @relation(fields: [employmentId], references: [id])
   name      String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
